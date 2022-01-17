@@ -1,25 +1,40 @@
 class ProductsController < ApplicationController
-  def display_all
+  def index
     products = Product.all
-    render json: products
+    render json: products.as_json(methods: [:tax, :total, :is_discounted?])
   end
-  def display_first
-    first = Product.first
-    render json: first
+
+  def create
+    product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      description: params[:description]
+    )
+    product.save
+    render json: product
   end
-  def display_last
-    last = Product.last
-    render json: last
-  end
-  def any_product
+  
+  def show
     id = params[:id]
     product = Product.find_by(id: id)
-    return_product = []
-    info = []
-    info << product.name
-    info << product.price
-    info << product.description
-    return_product << info
-    render json: return_product
+    render json: product.as_json(methods: [:tax, :total, :is_discounted?])
+  end 
+
+  def update
+    product = Product.find(params[:id])
+    
+    product.name = params[:name] || product.name
+    product.price = params[:price] || product.price
+    product.description = params[:description] || product.description
+    product.image_url = params[:image_url] || product.image_url
+    product.save
+    render json: product.as_json
   end
+
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+    render json: {message: "Your product as been obliterated."}
+  end
+
 end
