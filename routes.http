@@ -1,0 +1,40 @@
+#Product Index
+GET http://localhost:3000/products
+
+###
+
+#Product Create
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Lay's Golden Grounds",
+  "price": 125,
+  "description": "Bag of Lay's potato chips  made from potatoes grown in Lambeau Field soil",
+  "number_in_stock": "1",
+  "image_url": "https://www.gannett-cdn.com/presto/2022/01/12/PMJS/e4bc756c-c7a6-4e51-8d85-2ade4ebc1969-GG_Lay_s_1_Bag_KV_Packers.png?width=300&height=301&fit=crop&format=pjpg&auto=webp" 
+}
+
+###
+
+#Product Show
+
+GET http://localhost:3000/products/8
+
+###
+
+#Product Update
+
+PATCH http://localhost:3000/products/7
+Content-Type: application/json
+
+{
+  "image_url": "https://www.ccfanstore.com/images/Replica_Kosuke_Fukudome_Youth_Chicago_Cubs_Gray_Road_Jersey-800-1070.jpg"
+}
+
+###
+
+#Product Destroy
+
+DELETE http://localhost:3000/products/2
