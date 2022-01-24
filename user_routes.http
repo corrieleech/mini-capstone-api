@@ -1,0 +1,20 @@
+#Users Create (Sign up)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Yujin Lee",
+  "email": "yujin@gmail.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+
+### 
+#Sessions Create (Log in)
+POST http://localhost:3000/sessions
+Content-Type: application/json
+
+{
+  "email": "yuna@gmail.com",
+  "password": "password"
+}

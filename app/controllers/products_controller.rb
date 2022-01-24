@@ -1,21 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    products = Product.all
-    if params[:search]
-      products = products.where("name iLike ?", "%#{params[:search]}%")
-    end
-
-    if params[:sort] == "price" && params[:sort_order] == "desc"
-      products = products.order(:price => :desc)
-    elsif params[:sort] == "price"
-      products = products.order(:price)
-    else params[:sort] == nil
-      products = products.order(:id)
-    end
-
-    if params[:discount]
-      products = products.select {|product| product.is_discounted?}
-    end
+    products = Product
+    .title_search(params[:search])
+    .discounted(params[:discount])
+    .sorted(params[:sort], params[:sort_order])
 
     render json: products
 

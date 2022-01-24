@@ -24,4 +24,20 @@ class Product < ApplicationRecord
     price + tax
   end
 
+  scope :discounted, ->(check_discount) { where("price < ?", 10) if check_discount }
+
+  scope :title_search, ->(name) { where("name ILIKE ?", "%#{name}%") if name } 
+
+  scope :sorted, ->(sort, sort_order) {
+    if sort == "price"
+      if sort_order == "desc"
+        order(price: :desc)
+      else 
+        order(:price)
+      end
+    else 
+      order(id: :asc)
+    end
+  }
+
 end
