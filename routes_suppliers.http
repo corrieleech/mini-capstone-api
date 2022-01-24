@@ -1,0 +1,33 @@
+#Suppliers Index
+
+GET http://localhost:3000/suppliers
+
+###
+#Suppliers Create
+POST http://localhost:3000/suppliers
+Content-Type: application/json
+
+{
+  "name": "Sporting Goods General Store",
+  "email": "super@goods.com",
+  "phone_number": "262-123-4567"
+}
+
+###
+#Suppliers Show
+GET http://localhost:3000/suppliers/4
+
+###
+#Suppliers Update
+PATCH http://localhost:3000/suppliers/4
+Content-Type: application/json
+
+{
+  "name": "Spotty Sporting goods"
+}
+
+###
+#Suppliers Destroy
+DELETE http://localhost:3000/suppliers/4
+
+###

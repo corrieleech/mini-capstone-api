@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
   def show
     id = params[:id]
     product = Product.find_by(id: id)
+    pp current_user
     render json: product
   end 
 

@@ -1,0 +1,38 @@
+#Product Index
+GET http://localhost:3000/products/?search=Packer
+
+###
+#Product Create
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Lay's Golden Grounds",
+  "price": 125,
+  "description": "Bag of Lay's potato chips  made from potatoes grown in Lambeau Field soil",
+  "number_in_stock": 1,
+}
+
+###
+#Product Show
+
+GET http://localhost:3000/products/8
+Authorization: Bearer 
+
+###
+#Product Update
+
+PATCH http://localhost:3000/products/4
+Content-Type: application/json
+
+{
+  "price": 39.99
+}
+
+###
+#Product Destroy
+
+DELETE http://localhost:3000/products/2
+
+###
