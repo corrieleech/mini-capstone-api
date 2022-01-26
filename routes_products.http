@@ -1,5 +1,5 @@
 #Product Index
-GET http://localhost:3000/products/?search=Packer
+GET http://localhost:3000/products/
 
 ###
 #Product Create
@@ -18,7 +18,7 @@ Content-Type: application/json
 #Product Show
 
 GET http://localhost:3000/products/8
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NDMxNjY2NjB9.TMp09W76JA3p4AMtzUXoKZFJafQCo207mZPAYAK2ito
 
 ###
 #Product Update

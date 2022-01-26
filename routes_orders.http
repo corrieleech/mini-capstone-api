@@ -1,0 +1,25 @@
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NDMyNDU2Mzh9.Z74Z3sXxrJvOqOMI6UA0ftSK6cIf2mUex1PTwk5sq58
+
+#Orders Index
+GET http://localhost:3000/orders/
+Authorization: Bearer {{ jwt }}
+
+###
+
+#Orders Create
+POST http://localhost:3000/orders/
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "product_id": 8,
+  "quantity": 1
+}
+
+###
+#Orders Show
+
+GET http://localhost:3000/orders/3
+Authorization: Bearer {{ jwt }}
+
+###
