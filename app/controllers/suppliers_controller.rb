@@ -1,4 +1,6 @@
 class SuppliersController < ApplicationController
+  before_action :authenticate_admin, only: [:create, :update, :destroy]
+  
   def index
     suppliers = Supplier.all
     render json: suppliers 

@@ -1,34 +1,27 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user
+
   def index
-    if current_user
-      orders = current_user.orders
-      render json: orders
-    else
-      render json: [], status: :unauthorized
-    end
+    orders = current_user.orders
+    render json: orders
   end
   
   def create
-    if current_user
-      product = Product.find(params[:product_id])
-      subtotal = product.price * params[:quantity]
-      tax = subtotal * 0.09
-      total = subtotal + tax
-      order = Order.new(
-        product_id: params[:product_id],
-        user_id: current_user.id,
-        quantity: params[:quantity],
-        subtotal: subtotal,
-        tax: tax,
-        total: total
-      )
-      if order.save
-        render json: order
-      else
-        render json: {error: "Couldn't save due to the following: #{order.errors.full_messages}"}, status: :unprocessable_entity
-      end
+    carted_products = current_user.carted_products.where(status: "carted")
+    subtotal = carted_products.map { |carted_product| carted_product.product.price * carted_product.quantity}.reduce(:+)
+    tax = subtotal * 0.09
+    total = subtotal + tax
+    order = Order.new(
+      user_id: current_user.id,
+      subtotal: subtotal,
+      tax: tax,
+      total: total
+    )
+    if order.save
+      carted_products.update_all(order_id: order.id, status: "purchased")
+      render json: order
     else
-      render json: [], status: :unauthorized
+      render json: {error: "Couldn't save due to the following: #{order.errors.full_messages}"}, status: :unprocessable_entity
     end
   end
 

@@ -1,3 +1,5 @@
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDQ5NTkzMjl9.Y4A2xPauV-oRRCbFk22pSBDaplUN4UIPuBhhSqetqIY
+
 #Product Index
 GET http://localhost:3000/products/
 
@@ -6,33 +8,36 @@ GET http://localhost:3000/products/
 
 POST http://localhost:3000/products
 Content-Type: application/json
+Authorization: Bearer {{ jwt }} 
 
 {
-  "name": "Lay's Golden Grounds",
-  "price": 125,
-  "description": "Bag of Lay's potato chips  made from potatoes grown in Lambeau Field soil",
+  "name": "Packer QB",
+  "price": 1000,
+  "description": "Anything could be better than what you have",
   "number_in_stock": 1,
+  "supplier_id": 1
 }
 
 ###
 #Product Show
 
 GET http://localhost:3000/products/8
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NDMxNjY2NjB9.TMp09W76JA3p4AMtzUXoKZFJafQCo207mZPAYAK2ito
 
 ###
 #Product Update
 
-PATCH http://localhost:3000/products/4
+PATCH http://localhost:3000/products/8
 Content-Type: application/json
+Authorization: Bearer {{ jwt }}
 
 {
-  "price": 39.99
+  "price": 999.99
 }
 
 ###
 #Product Destroy
 
-DELETE http://localhost:3000/products/2
+DELETE http://localhost:3000/products/15
+Authorization: Bearer {{ jwt }}
 
 ###

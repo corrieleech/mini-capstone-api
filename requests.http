@@ -1,0 +1,22 @@
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NDM0ODczMjF9.01_8Ee7RNkHDQGuWiH5SD7-3lRgRqzgSXYIdwv8BQO8
+#Yujin
+
+# @jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDM0ODg4ODd9.gELFSbx7oujsru9agor5B4Snv-6Y6fIZZGHuiHo0GKQ
+# #Yuna
+
+#CartedProdcuts Index
+
+GET http://localhost:3000/carted_products
+Authorization: Bearer {{ jwt }}
+
+###
+#Carted Products Create
+POST http://localhost:3000/carted_products
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "product_id": 14,
+  "quantity": 1,
+  "status": "carted"
+}

@@ -1,3 +1,6 @@
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDM0MjY5NzV9.9K8qm6cNOVCtKPzgKl0Jsc5A4DqULHfSep-_EqdrGhY
+#nonadmin
+
 #Suppliers Index
 
 GET http://localhost:3000/suppliers
@@ -6,6 +9,7 @@ GET http://localhost:3000/suppliers
 #Suppliers Create
 POST http://localhost:3000/suppliers
 Content-Type: application/json
+Authorization: Bearer {{ jwt }}
 
 {
   "name": "Sporting Goods General Store",
@@ -15,12 +19,13 @@ Content-Type: application/json
 
 ###
 #Suppliers Show
-GET http://localhost:3000/suppliers/4
+GET http://localhost:3000/suppliers/3
 
 ###
 #Suppliers Update
 PATCH http://localhost:3000/suppliers/4
 Content-Type: application/json
+Authorization: Bearer {{ jwt }}
 
 {
   "name": "Spotty Sporting goods"
@@ -29,5 +34,6 @@ Content-Type: application/json
 ###
 #Suppliers Destroy
 DELETE http://localhost:3000/suppliers/4
+Authorization: Bearer {{ jwt }}
 
 ###
